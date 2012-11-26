@@ -39,11 +39,12 @@ local function worker(format)
     _mem.inuse = _mem.total - _mem.free
     _mem.bcuse = _mem.total - _mem.buf.f
     _mem.usep  = math.floor(_mem.inuse / _mem.total * 100)
+    _mem.bcusep  = math.floor(_mem.bcuse / _mem.total * 100)
     -- Calculate swap percentage
     _mem.swp.inuse = _mem.swp.t - _mem.swp.f
     _mem.swp.usep  = math.floor(_mem.swp.inuse / _mem.swp.t * 100)
 
-    return {_mem.usep,     _mem.inuse,     _mem.total, _mem.free,
+    return {_mem.usep, _mem.bcusep,     _mem.inuse,     _mem.total, _mem.free,
             _mem.swp.usep, _mem.swp.inuse, _mem.swp.t, _mem.swp.f,
             _mem.bcuse }
 end
