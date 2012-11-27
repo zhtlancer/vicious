@@ -25,7 +25,7 @@ local function worker(format, warg)
     local f = io.popen("nc 127.0.0.1 "..warg)
 
     for line in f:lines() do
-        for d, t in string.gmatch(line, "|([%/%a%d]+)|.-|([%d]+)|[CF]+|") do
+        for d, t in string.gmatch(line, "|([%/%a%d]+)|.-|([%d%a]+)|[CF*]+|") do
             hdd_temp["{"..d.."}"] = tonumber(t)
         end
     end
