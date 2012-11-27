@@ -25,8 +25,10 @@ local function worker(format, warg)
     local f = io.popen("nc 127.0.0.1 "..warg)
 
     for line in f:lines() do
-        for d, t in string.gmatch(line, "|([%/%a%d]+)|.-|([%d]+)|[CF]+|") do
-            hdd_temp["{"..d.."}"] = tonumber(t)
+        for d, t in string.gmatch(line, "|([%/%a%d]+)|.-|([%d%a]+)|[CF*]+|") do
+	    local tmp = tonumber(t)
+	    if tmp == nil then tmp = t end
+            hdd_temp["{"..d.."}"] = tmp
         end
     end
     f:close()
