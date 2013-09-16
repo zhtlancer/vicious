@@ -25,7 +25,8 @@ local function worker(format, warg)
         ["sys"]  = {"/sys/class/thermal/",     file = "temp",       div = 1000},
         ["core"] = {"/sys/devices/platform/",  file = "temp2_input",div = 1000},
         ["proc"] = {"/proc/acpi/thermal_zone/",file = "temperature"},
-        ["nouveau"]  = {"/sys/class/drm/", file = "device/temp1_input", div = 1000}
+        ["nouveau"]  = {"/sys/class/drm/", file = "device/temp1_input", div = 1000},
+	["thinkpad_fan"] = {"/sys/class/hwmon/", file = "device/fan1_input", div = 1}
     } --  Default to /sys/class/thermal
     warg = type(warg) == "table" and warg or { warg, "sys" }
 
