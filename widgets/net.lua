@@ -73,6 +73,26 @@ local function worker(format)
         end
     end
 
+    if nets["wlan0"] == nil then
+	    helpers.uformat(args, "wlan0" .. " down", 0, unit)
+	    helpers.uformat(args, "wlan0" .. " up",	0, unit)
+    end
+
+    if nets["eth0"] == nil then
+	    helpers.uformat(args, "eth0" .. " down", 0, unit)
+	    helpers.uformat(args, "eth0" .. " up",	0, unit)
+    end
+
+    if nets["enp0s25"] == nil then
+	    helpers.uformat(args, "enp0s25" .. " down", 0, unit)
+	    helpers.uformat(args, "enp0s25" .. " up",	0, unit)
+    end
+
+    if nets["wlp3s0"] == nil then
+	    helpers.uformat(args, "wlp3s0" .. " down", 0, unit)
+	    helpers.uformat(args, "wlp3s0" .. " up",	0, unit)
+    end
+
     return args
 end
 -- }}}
