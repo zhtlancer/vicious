@@ -9,6 +9,7 @@ local tonumber = tonumber
 local setmetatable = setmetatable
 local string = { format = string.format }
 local helpers = require("vicious.helpers")
+local naughty = require("naughty")
 local math = {
     min = math.min,
     floor = math.floor
@@ -85,6 +86,12 @@ local function worker(format, warg)
         local minutesleft = math.floor((timeleft - hoursleft) * 60 )
 
         time = string.format("%02d:%02d", hoursleft, minutesleft)
+    end
+
+    if state == "-" and percent <= 15 then
+        naughty.notify({ preset = naughty.config.presets.critical,
+		title = "Oops, battery low!",
+		text = percent .. "%, " .. time .. " left."})
     end
 
     return {state, percent, time, wear}
