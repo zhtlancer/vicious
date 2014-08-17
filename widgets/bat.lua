@@ -88,7 +88,7 @@ local function worker(format, warg)
         time = string.format("%02d:%02d", hoursleft, minutesleft)
     end
 
-    if state == "-" and percent <= 20 then
+    if state == "−" and percent <= 20 then
         naughty.notify({ preset = naughty.config.presets.critical,
 		title = "Oops, battery low!",
 		text = percent .. "%, " .. time .. " left."})
