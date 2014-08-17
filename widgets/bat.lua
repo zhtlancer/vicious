@@ -88,10 +88,17 @@ local function worker(format, warg)
         time = string.format("%02d:%02d", hoursleft, minutesleft)
     end
 
-    if state == "-" and percent <= 15 then
+    if state == "-" and percent <= 20 then
         naughty.notify({ preset = naughty.config.presets.critical,
 		title = "Oops, battery low!",
 		text = percent .. "%, " .. time .. " left."})
+
+	if percent <= 10 then
+		naughty.notify({ preset = naughty.config.presets.critical,
+			title = "Hibernate on low battery.",
+			text = percent .. "%, " .. time .. " left."})
+		os.execute("systemctl hibernate")
+	end
     end
 
     return {state, percent, time, wear}
